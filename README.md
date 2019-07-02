@@ -3,3 +3,6 @@ body-parser对返回数据进行解析
 bcrypt 密码加密
 jsonwebtoken 用于在登录成功后为用户分配token令牌
 passport passport-jwt 验证token
+
+
+请求拦截 响应拦截 ，判断token的状态

@@ -1,11 +1,14 @@
 {
   "name": "nodeapp",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "license": "MIT",
   "scripts": {
+    "client-install": "npm install --prefix client",
+    "client": "npm start --prefix client",
     "start": "node server.js",
-    "serve": "nodemon server.js"
+    "serve": "nodemon server.js",
+    "dev": "concurrently \"npm run serve\" \"npm run client\""
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
