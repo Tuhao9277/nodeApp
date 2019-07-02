@@ -3,7 +3,8 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const gravatar = require('gravatar');
 const jwt = require('jsonwebtoken');
-const keys = require('../../config/key')
+const keys = require('../../config/keys')
+const passport = require('passport')
 const router = express.Router();
 const User = require('../../modules/User')
 // $route GET api/users/test
@@ -59,26 +60,37 @@ router.post('/login', (req, res) => {
                     return res.status(404).json({ email: "用户不存在" });
                }
                // Exp password
-               bcrypt.compare(password,user.password)
-                    .then(isMatch =>{
-                         if(isMatch){
-                              const rule = {id:user.id,name:user.name}
-                              jwt.sign(rule,keys.secretOrKey,{expiresIn:3600},(err,token)=>{
-                                   if(err) throw err
+               bcrypt.compare(password, user.password)
+                    .then(isMatch => {
+                         if (isMatch) {
+                              const rule = { id: user.id, name: user.name }
+                              jwt.sign(rule, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+                                   if (err) throw err
                                    res.json({
-                                       success:true,
-                                       token:"mrwu"+token  
-                                    });
+                                        success: true,
+                                        token: "Bearer" + token
+                                   });
                               })
                               // jwt.sign("规则","加密名字","过期时间","回调函数")
-                              
+
                               // res.json({msg:"success"});
-                         }else{
-                              return res.status(400).json({password:"密码不正确"});
+                         } else {
+                              return res.status(400).json({ password: "密码不正确" });
                          }
                     })
 
           })
 
 });
+
+// $route GET api/users/login
+// @desc Return token jwt passport
+// @access Private
+router.get('/current', passport.authenticate("jwt", { session: false }), (req, res) => {
+     res.json({
+          "id": req.user._id,
+          "name": req.user.name,
+          "email": req.user.email
+     });
+})
 module.exports = router;
