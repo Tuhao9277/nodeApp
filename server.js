@@ -5,7 +5,9 @@ const passport = require('passport')
 const bodyParser = require('body-parser')
 
 // import user.js
-const users = require('./routes/api/user')
+const users = require('./routes/api/user');
+const profiles = require('./routes/api/profiles')
+
 //Db config
 const db = require('./config/keys').mongoURI;
 
@@ -28,6 +30,7 @@ require('./config/passport')(passport);
 
 // use routes
 app.use("/api/users",users);
+app.use("/api/profiles",profiles);
 // use body-parse middleware
 
 
