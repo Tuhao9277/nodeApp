@@ -10,9 +10,9 @@ const User = require('../../modules/User')
 // $route GET api/users/test
 // @desc Return json data required
 // @access public
-router.get('/test', (req, res) => {
-     res.json({ msg: "login works" });
-});
+// router.get('/test', (req, res) => {
+//      res.json({ msg: "login works" });
+// });
 
 // $route POST api/users/register
 // @desc Return json data required
@@ -26,7 +26,7 @@ router.post('/register', (req, res) => {
                const avatar = gravatar.url(req.body.email, { s: '200', r: 'pg', d: 'mm' });
                //returns //www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=200&r=pg&d=404
                if (user)
-                    return res.status(400).json({ email: "邮箱已被注册！" });
+                    return res.status(400).json("邮箱已被注册！" );
                else {
 
                     const newUser = new User({
@@ -34,6 +34,7 @@ router.post('/register', (req, res) => {
                          avatar,
                          email: req.body.email,
                          password: req.body.password,
+                         identity:req.body.identity
                     })
                     bcrypt.genSalt(10, function (err, salt) {
                          bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -57,13 +58,18 @@ router.post('/login', (req, res) => {
      User.findOne({ email })
           .then(user => {
                if (!user) {
-                    return res.status(404).json({ email: "用户不存在" });
+                    return res.status(404).json("用户不存在" );
                }
                // Exp password
                bcrypt.compare(password, user.password)
                     .then(isMatch => {
                          if (isMatch) {
-                              const rule = { id: user.id, name: user.name }
+                              const rule = { 
+                                   id: user.id, 
+                                   name: user.name,
+                                   avatar:user.avatar,
+                                   identity:user.identity
+                              }
                               jwt.sign(rule, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                                    if (err) throw err
                                    res.json({
@@ -90,7 +96,8 @@ router.get('/current', passport.authenticate("jwt", { session: false }), (req, r
      res.json({
           "id": req.user._id,
           "name": req.user.name,
-          "email": req.user.email
+          "email": req.user.email,
+          "identity":req.user.identity
      });
 })
 module.exports = router;
