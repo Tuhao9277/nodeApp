@@ -34,6 +34,7 @@
   </div>
 </template>
 <script>
+import jwt_decode from 'jwt-decode'
 export default {
     name:'login',
   data() {
@@ -76,10 +77,24 @@ export default {
               const {token} = res.data;
               // 存储到localstorage
               localStorage.setItem('eleToken',token);
-          });
+              // 解析token
+              const decoded =jwt_decode(token)
+              this.$store.dispatch("setAuthentivated",!this.isEmpty(decoded))
+              this.$store.dispatch("SetUser",decoded)
+              // console.log(decoded)
           this.$router.push("/index");
+          });
         }
       });
+    },
+    // 判空方法
+    isEmpty(value){
+      return (
+        value === undefined ||
+        value === null || 
+        (typeof vaule === "object" && Object.keys(value).length ===0 ) || 
+        (typeof vaule === "string" && value.trim().length ===0 )
+      )
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
