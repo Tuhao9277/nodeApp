@@ -6,3 +6,4 @@ passport passport-jwt 验证token
 
 
 请求拦截 响应拦截 ，判断token的状态
+首页解析localstorage的token，并存储到vuex中

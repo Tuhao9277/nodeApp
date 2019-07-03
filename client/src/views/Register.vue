@@ -107,7 +107,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-            this.$axios.post("/users/register",this.registerUser)
+            this.$axios.post("/api/users/register",this.registerUser)
                 .then((res) => {
                     // 注册成功，提示，跳转
                     this.$message({

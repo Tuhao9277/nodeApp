@@ -41,7 +41,7 @@ router.post('/add', passport.authenticate("jwt", { session: false }), (req, res)
 // @route Get api/profile/
 // @desc Get all profiles 
 // @access public
-router.get('/',
+router.get('/list',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Profile.find()
