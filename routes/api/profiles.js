@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport')
-const Profile = require('../../modules/Profile')
+const Profile = require('../../models/Profile')
 
 // @route GET api/profile/test
 // @desc Return json data required

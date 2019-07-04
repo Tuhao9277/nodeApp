@@ -59,6 +59,7 @@ export default {
   position: fixed;
   top: 60px;
   left: 0;
+  width: auto;
   min-height: calc(100vh - 63px);
   z-index: 99;
 }

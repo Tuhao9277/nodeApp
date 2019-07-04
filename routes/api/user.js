@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys')
 const passport = require('passport')
 const router = express.Router();
-const User = require('../../modules/User')
+const User = require('../../models/User')
 // $route GET api/users/test
 // @desc Return json data required
 // @access public
@@ -74,7 +74,7 @@ router.post('/login', (req, res) => {
                                    if (err) throw err
                                    res.json({
                                         success: true,
-                                        token: "Bearer" + token
+                                        token: "Bearer " + token
                                    });
                               })
                               // jwt.sign("规则","加密名字","过期时间","回调函数")
