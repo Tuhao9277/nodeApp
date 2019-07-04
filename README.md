@@ -16,6 +16,7 @@ yarn dev
 # 环境参数
 - 技术语言：ES6 CSS 
 - 框架：Node.js Vue ElementUI
+- 辅助工具：Vue-Router, Vuex
 - 插件 Mongoose+body-parser+gravatar+bcrypt+jsonwebtoken+passport+localstorage
 - 开发工具 ： VsCode
 - 构建工具 vueCLI
