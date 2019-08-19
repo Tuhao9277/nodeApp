@@ -1,8 +1,8 @@
 # 🎉 Vue+Node 构建后台管理系统
 Vue+Node.js构建的一个B端管理系统，包含基本的登录注册，鉴权，条目的增删改查等功能。
-<img src="https://github.com/gsh0581/nodeApp/img/houdai.png" width="720" height="576" align=center />
-<img src="https://github.com/gsh0581/nodeApp/img/QQ20190819-212206.png" width="720" height="576" align=center />
-<img src="https://github.com/gsh0581/nodeApp/img/QQ20190819-212225.png" width="720" height="576" align=center />
+<img src="https://github.com/gsh0581/nodeApp/tree/master/img/houdai.png" width="720" height="576" align=center />
+<img src="https://github.com/gsh0581/nodeApp/tree/master/img/QQ20190819-212206.png" width="720" height="576" align=center />
+<img src="https://github.com/gsh0581/nodeApp/tree/master/img/QQ20190819-212225.png" width="720" height="576" align=center />
 # 🆕安装下载与预览
 - 安装依赖包
 - 
