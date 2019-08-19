@@ -2,7 +2,7 @@
   <div class="register">
     <section class="form_container">
       <div class="manage_tip">
-        <span class="title">美团网后台管理系统</span>
+        <span class="title">欢迎使用后台管理系统</span>
         <el-form
           :model="loginUser"
           :rules="rules"

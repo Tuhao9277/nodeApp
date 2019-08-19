@@ -43,6 +43,12 @@ export default {
           path: "fund",
           children: [{ path: "/fundlist", name: "资金流水" }]
         },
+          {
+          icon: "fa-money",
+          name: "设备反馈",
+          path: "review",
+          children: [{ path: "/userreview", name: "设备反馈" }]
+        },
         {
           icon: "fa-asterisk",
           name: "信息管理",

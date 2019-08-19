@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from './views/Index'
 import Register from './views/Register'
 import InfoShow from './views/InfoShow'
+import UserReview from './views/UserReview'
 import Home from './views/Home'
 import FundList from './views/FundList'
 import Login from './views/Login'
@@ -34,6 +35,11 @@ const router = new Router({
         path: '/infoshow',
         name: 'infoshow',
         component: InfoShow,
+      },
+      {
+        path: '/userreview',
+        name: 'userreview',
+        component: UserReview,
       },
       {
         path: '/fundlist',

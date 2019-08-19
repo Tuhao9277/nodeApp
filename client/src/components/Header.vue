@@ -5,7 +5,7 @@
           <div class="logo">
         <img src="@/assets/logo.svg" />
           </div>
-        <div class="title">美团网后台管理系统</div>
+        <div class="title">后台管理系统</div>
       </el-col>
       <el-col :span="6" class="user">
         <div class="userinfo">

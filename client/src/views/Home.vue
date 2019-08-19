@@ -1,8 +1,8 @@
 <template>
     <div class="home">
         <div class="container">
-            <h1 class="title">美团网</h1>
-            <p class="lead"> 美团一次美一次! </p>
+            <h1 class="title">后台管理系统</h1>
+            <p class="lead"> Welcome to  admin System! </p>
         </div>
     </div>
 </template>
