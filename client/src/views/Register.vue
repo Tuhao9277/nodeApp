@@ -11,16 +11,32 @@
           class="registerForm"
         >
           <el-form-item label="用户名" prop="name">
-            <el-input type="text" v-model="registerUser.name" placeholder="请输入用户名"></el-input>
+            <el-input
+              type="text"
+              v-model="registerUser.name"
+              placeholder="请输入用户名"
+            ></el-input>
           </el-form-item>
           <el-form-item label="邮箱" prop="email">
-            <el-input type="email" v-model="registerUser.email" placeholder="请输入Email"></el-input>
+            <el-input
+              type="email"
+              v-model="registerUser.email"
+              placeholder="请输入Email"
+            ></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input type="password" v-model="registerUser.password" placeholder="请输入密码"></el-input>
+            <el-input
+              type="password"
+              v-model="registerUser.password"
+              placeholder="请输入密码"
+            ></el-input>
           </el-form-item>
           <el-form-item label="确认密码" prop="password2">
-            <el-input type="password" v-model="registerUser.password2" placeholder="确认密码"></el-input>
+            <el-input
+              type="password"
+              v-model="registerUser.password2"
+              placeholder="确认密码"
+            ></el-input>
           </el-form-item>
           <el-form-item label="选择身份" prop="identity">
             <el-select v-model="registerUser.identity" placeholder="请选择身份">
@@ -29,7 +45,16 @@
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="submit_btn" @click="submitForm('registerForm')">注册</el-button>
+            <el-button
+              type="primary"
+              class="submit_btn"
+              :loading="submitLoading"
+              @click="submitForm('registerForm')"
+              >注册</el-button
+            >
+            <div class="tiparea">
+              <p>已有账号？去 <router-link to="/login">登录</router-link></p>
+            </div>
           </el-form-item>
         </el-form>
       </div>
@@ -38,99 +63,102 @@
 </template>
 <script>
 export default {
-    name:'register',
+  name: 'register',
 
   data() {
     var validatePass2 = (rule, value, callback) => {
       if (value !== this.registerUser.password) {
-
-        callback(new Error("两次输入密码不一致!"));
+        callback(new Error('两次输入密码不一致!'))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     return {
       registerUser: {
-        name: "",
-        email: "",
-        password: "",
-        password2: "",
-        identity: ""
+        name: '',
+        email: '',
+        password: '',
+        password2: '',
+        identity: '',
       },
       rules: {
         name: [
           {
             required: true,
-            message: "用户名不能为空",
-            trigger: "blur"
+            message: '用户名不能为空',
+            trigger: 'blur',
           },
           {
             required: true,
             min: 2,
             max: 16,
-            message: "用户名在2到16个字符之间",
-            trigger: "blur"
-          }
+            message: '用户名在2到16个字符之间',
+            trigger: 'blur',
+          },
         ],
         email: [
           {
             required: true,
-            trigger: "blur",
-            message: "邮箱格式不正确"
-          }
+            trigger: 'blur',
+            message: '邮箱格式不正确',
+          },
         ],
         password: [
-          { required: true, trigger: "blur", message: "密码不能为空" },
+          { required: true, trigger: 'blur', message: '密码不能为空' },
           {
             required: true,
             min: 6,
             max: 30,
-            message: "长度在6到30个字符之间",
-            trigger: "blur"
-          }
+            message: '长度在6到30个字符之间',
+            trigger: 'blur',
+          },
         ],
         password2: [
           {
-            required:true,
-            message:"确认密码不能为空！",
-            trigger: "blur"
+            required: true,
+            message: '确认密码不能为空！',
+            trigger: 'blur',
           },
           {
             validator: validatePass2,
-             trigger: "blur"
-          }
-        ]
-      }
-    };
+            trigger: 'blur',
+          },
+        ],
+      },
+      submitLoading: false,
+    }
   },
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-            this.$axios.post("/api/users/register",this.registerUser)
-                .then((res) => {
-                    // 注册成功，提示，跳转
-                    this.$message({
-                        message:"账号注册成功",
-                        type:'success'
-                    })
-                this.$router.push('/login');
-                });
-        } 
-      });
+          this.submitLoading = true
+          this.$axios
+            .post('/api/users/register', this.registerUser)
+            .then(res => {
+              // 注册成功，提示，跳转
+              this.submitLoading = false
+              this.$message({
+                message: '账号注册成功',
+                type: 'success',
+              })
+              this.$router.push('/login')
+            })
+        }
+      })
     },
     resetForm(formName) {
-      this.$refs[formName].resetFields();
-    }
-  }
-};
+      this.$refs[formName].resetFields()
+    },
+  },
+}
 </script>
-<style >
+<style>
 .register {
   position: relative;
   width: 100%;
   height: 100%;
-  background: url(../assets/bg.jpg) no-repeat center center;
+  background: #2d3a4b;
   background-size: 100% 100%;
 }
 .form_container {
@@ -144,7 +172,7 @@ export default {
   text-align: center;
 }
 .form_container .manage_tip .title {
-  font-family: "Microsoft YaHei";
+  font-family: 'Microsoft YaHei';
   font-weight: bold;
   font-size: 26px;
   color: #fff;
@@ -156,9 +184,10 @@ export default {
   border-radius: 5px;
   box-shadow: 0px 5px 10px #cccc;
 }
-
+.tiparea p a {
+  color: #409eff;
+}
 .submit_btn {
   width: 100%;
 }
 </style>
-

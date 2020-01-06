@@ -94,9 +94,7 @@ export default {
                     })
                     this.dialog.show=false;
                     this.$emit('update');
-                }).catch((err) => {
-                    
-                });
+                })
         }
       });
     }

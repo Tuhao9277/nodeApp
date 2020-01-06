@@ -3,6 +3,7 @@
     <section class="form_container">
       <div class="manage_tip">
         <span class="title">欢迎使用后台管理系统</span>
+        <span class="sub_title">ElementUI 是大中华区最具影响力的 Web 设计规范</span>
         <el-form
           :model="loginUser"
           :rules="rules"
@@ -103,12 +104,17 @@ export default {
 };
 </script>
 <style >
+.sub_title{
+  display: block;
+  color: #a9b5c4;
+  font-size: 14px;
+  margin-top: 10px;
+}
 .register {
   position: relative;
   width: 100%;
   height: 100%;
-  background: url(../assets/bg.jpg) no-repeat center center;
-  background-size: 100% 100%;
+  background-color: #2d3a4b;
 }
 .form_container {
   width: 370px;

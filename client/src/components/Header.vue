@@ -2,9 +2,7 @@
   <div class="head-nav">
     <el-row>
       <el-col :span="6" class="logo-container">
-          <div class="logo">
-        <img src="@/assets/logo.svg" />
-          </div>
+
         <div class="title">后台管理系统</div>
       </el-col>
       <el-col :span="6" class="user">
@@ -90,20 +88,6 @@ export default {
   display: flex;
  
 }
-
-.logo {
-  height: 100%;
-  min-width: 255px;
-  background-color: #fff;
-  text-align: center;
-  margin-right: 5px;
-}
-.logo img{
-    width: 125px;
-    height: 28px;
-    vertical-align: middle;
-}
-
 .title {
   vertical-align: middle;
   font-size: 22px;
